@@ -11,6 +11,15 @@ spec:
       labels:
         component: spark-master
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - arm64
       containers:
         - name: spark-master
           image: afritzler/spark-arm:1.6.2
