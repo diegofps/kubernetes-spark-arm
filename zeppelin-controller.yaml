@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: zeppelin-controller
+  labels:
+    app: zeppelin
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/arch
+            operator: In
+            values:
+            - amd64
+  restartPolicy: Always
+  containers:
+  - name: zeppelin
+    image: apache/zeppelin:0.8.2
+    imagePullPolicy: IfNotPresent
+    ports:
+      - containerPort: 8080
