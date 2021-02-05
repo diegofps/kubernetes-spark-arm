@@ -5,7 +5,6 @@ metadata:
   labels:
     app: spark-worker
 spec:
-  replicas: 2
   selector:
     matchLabels:
       name: spark-worker
@@ -30,6 +29,3 @@ spec:
           command: ["/start-worker"]
           ports:
             - containerPort: 8081
-          resources:
-            requests:
-              cpu: 100m
